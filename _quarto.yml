@@ -5,7 +5,7 @@ project:
 website:
   title: "Victoria Erofeeva"
   description: "VERA — Victoria Erofeeva Research on adaptive networked intelligence, distributed optimization, and multi-agent coordination."
-  site-url: https://Ultramarine-x64.github.io/vera-research
+  site-url: https://vera-research.dev
   page-navigation: true
   back-to-top-navigation: true
   repo-url: https://github.com/Ultramarine-x64/vera-research
