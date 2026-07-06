@@ -1,0 +1,10 @@
+---
+title: "Blog"
+listing:
+  contents: posts
+  sort: date desc
+  type: default
+page-layout: full
+---
+
+Notes on stochastic optimization, multi-agent coordination, and learning under uncertainty.

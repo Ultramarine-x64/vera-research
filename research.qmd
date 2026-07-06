@@ -1,0 +1,24 @@
+---
+title: "Research"
+toc: false
+---
+
+## Adaptive Learning and Efficient Model Optimization
+
+Efficient adaptation and optimization when feedback is limited, noisy,
+delayed, or expensive to obtain.
+
+## Distributed Intelligence and Multi-Agent Systems
+
+Distributed optimization, consensus, and graph-based coordination when
+no single agent observes the global objective.
+
+## Networked Control and Multi-Robot Autonomy
+
+Coordination and control of cyber-physical systems and robotic teams under
+uncertainty and nonstationarity.
+
+### Cross-cutting themes
+
+communication constraints · noisy measurements · delayed feedback ·
+nonstationarity · graph-structured interaction

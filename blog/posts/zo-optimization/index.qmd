@@ -1,0 +1,8 @@
+---
+title: "Optimization when feedback is limited, noisy, or unavailable"
+date: 2026-07-06
+description: "A research note on optimization under restricted feedback."
+draft: true
+---
+
+Coming soon.

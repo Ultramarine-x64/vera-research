@@ -1,0 +1,54 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Victoria Erofeeva"
+  description: "VERA — Victoria Erofeeva Research on adaptive networked intelligence, distributed optimization, and multi-agent coordination."
+  site-url: https://Ultramarine-x64.github.io/vera-research
+  page-navigation: true
+  back-to-top-navigation: true
+  repo-url: https://github.com/Ultramarine-x64/vera-research
+  repo-actions: [issue]
+  draft-mode: unlinked
+
+  navbar:
+    background: primary
+    foreground: white
+    left:
+      - text: Home
+        href: index.qmd
+      - text: Research
+        href: research.qmd
+      - text: Blog
+        href: blog/index.qmd
+      - text: Publications
+        href: publications.qmd
+      - text: CV
+        href: cv.qmd
+    right:
+      - icon: github
+        href: https://github.com/Ultramarine-x64
+        aria-label: GitHub
+
+  page-footer:
+    center: |
+      **VERA** — Victoria Erofeeva Research · Adaptive Networked Intelligence  
+      © 2026 Victoria Erofeeva
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    smooth-scroll: true
+    css: styles/custom.scss
+
+bibliography: references.bib
+csl: https://www.zotero.org/styles/ieee
+
+execute:
+  freeze: auto
+
+lang: en
+

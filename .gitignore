@@ -1,0 +1,7 @@
+/.quarto/
+**/*.quarto_ipynb
+/_site/
+**/*.knit.md
+**/*.utf8.md
+.DS_Store
+.Rproj.user
