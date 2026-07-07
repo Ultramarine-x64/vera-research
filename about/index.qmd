@@ -21,6 +21,6 @@ graph-based coordination, and control under uncertainty and asynchrony.
 
 ### Contact
 
-- Email: [victoria.erofeeva@gmail.com](mailto:victoria.erofeeva@gmail.com)
+- Email: [victoria.erofeeva@gmail.com](mailto:vicki.ultramarine@gmail.com)
 - GitHub: [Ultramarine-x64](https://github.com/Ultramarine-x64)
 - LinkedIn: [victoria-erofeeva](https://www.linkedin.com/in/vicki-erofeeva/)

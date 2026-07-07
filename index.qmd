@@ -28,7 +28,7 @@ include-in-header:
             <a href="about/index.qmd">Read more about me →</a>
           </p>
           <div class="vera-hero-contact">
-            <a href="mailto:victoria.erofeeva@gmail.com">Email</a>
+            <a href="mailto:vicki.ultramarine@gmail.com">Email</a>
             <span>·</span>
             <a href="https://github.com/Ultramarine-x64">GitHub</a>
             <span>·</span>
@@ -36,7 +36,7 @@ include-in-header:
           </div>
         </div>
         <div class="vera-hero-visual">
-          <img src="assets/vera-geometry.svg" alt="Sparse directed graph with spectral curve overlay" width="340">
+          <img src="assets/vera-geometry.svg" alt="Graph and optimization curve" width="340">
         </div>
       </div>
     </div>
