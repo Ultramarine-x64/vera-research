@@ -3,9 +3,9 @@ pagetitle: "Victoria Erofeeva"
 page-layout: full
 toc: false
 title-block: false
-include-in-header:
-  - text: |
-      <script>document.body.classList.add('vera-home');</script>
+format:
+  html:
+    body-classes: vera-home
 ---
 
 ```{=html}

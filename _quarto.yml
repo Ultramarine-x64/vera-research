@@ -15,6 +15,9 @@ website:
   draft-mode: unlinked
 
   navbar:
+    title: false
+    logo: assets/vera_navbar_A_fit.svg
+    logo-alt: "VERA"
     background: "#FAFAFA"
     foreground: "#09090B"
     left:
@@ -36,7 +39,7 @@ website:
   page-footer:
     center: |
       **VERA** — Victoria Erofeeva Research · Adaptive Networked Intelligence  
-      [Email](mailto:victoria.erofeeva@gmail.com) · [GitHub](https://github.com/Ultramarine-x64) · [LinkedIn](https://www.linkedin.com/in/vicki-erofeeva/)  
+      [Email](mailto:vicki.ultramarine@gmail.com) · [GitHub](https://github.com/Ultramarine-x64) · [LinkedIn](https://www.linkedin.com/in/vicki-erofeeva/)  
       © 2026 Victoria Erofeeva
 
 format:
@@ -50,7 +53,7 @@ format:
     link-external-newwindow: true
 
 bibliography: references.bib
-csl: https://www.zotero.org/styles/ieee
+csl: ieee.csl
 
 citeproc: false
 

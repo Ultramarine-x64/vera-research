@@ -56,6 +56,7 @@ main a:not(.vera-btn):not(.vera-card):not(.vera-pub-title) {
     display: flex !important;
     flex-wrap: nowrap;
     align-items: center;
+    gap: 0.75rem;
   }
 
   .navbar-brand-container.mx-auto {
@@ -66,31 +67,41 @@ main a:not(.vera-btn):not(.vera-card):not(.vera-pub-title) {
 
   #navbarCollapse.navbar-collapse {
     order: 2;
-    flex: 1 1 0;
-    position: relative;
+    flex: 1 1 auto;
     display: flex !important;
+    flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: flex-end;
     align-items: center;
+    gap: 0;
+    position: static;
+    pointer-events: auto;
   }
 
-  .navbar-nav.me-auto {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+  .navbar-nav.me-auto,
+  .navbar-nav.ms-auto {
+    position: static;
+    transform: none;
+    flex-direction: row;
     margin: 0 !important;
   }
 
   .navbar-nav.ms-auto {
-    margin: 0 0.75rem 0 0 !important;
+    margin-left: 0.75rem !important;
+    padding-left: 0.85rem;
+    border-left: 1px solid $vera-line;
+    align-items: center;
   }
 
   #quarto-search {
     order: 3;
     flex: 0 0 auto;
+    margin-left: 0.25rem;
   }
 
   .navbar-toggler {
     order: 4;
+    flex: 0 0 auto;
   }
 }
 
@@ -103,6 +114,14 @@ main a:not(.vera-btn):not(.vera-card):not(.vera-pub-title) {
   color: $vera-text !important;
 }
 
+.navbar-brand-logo img,
+.navbar-brand-logo .navbar-logo {
+  height: 2.5rem;
+  max-height: 2.5rem !important;
+  width: auto;
+  display: block;
+}
+
 .navbar-nav .nav-link {
   color: $vera-muted !important;
   padding: 0.35rem 0.75rem !important;
@@ -112,6 +131,41 @@ main a:not(.vera-btn):not(.vera-card):not(.vera-pub-title) {
   &.active {
     color: $vera-text !important;
     border-bottom-color: $vera-line;
+  }
+}
+
+.navbar-nav.ms-auto {
+  .nav-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0.35rem 0.55rem !important;
+    border-bottom: none !important;
+
+    &:hover,
+    &.active {
+      border-bottom: none !important;
+    }
+  }
+
+  .nav-item.compact .nav-link {
+    font-size: 0.82rem;
+    padding: 0.35rem 0.55rem !important;
+  }
+
+  .menu-text:empty {
+    display: none;
+  }
+
+  .bi {
+    font-size: 1rem;
+    line-height: 1;
   }
 }
 
@@ -241,11 +295,30 @@ body.vera-home .quarto-title-block {
 
 body.vera-home #quarto-content {
   padding-top: 0;
+  min-height: auto;
 }
 
 body.vera-home main.content {
   max-width: none;
   padding: 0;
+}
+
+body.vera-home .vera-hero {
+  min-height: auto;
+  align-items: flex-start;
+  padding: 2.5rem 0 1.5rem;
+  border-bottom: none;
+}
+
+body.vera-home .nav-footer {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+
+  &::before {
+    display: none;
+  }
 }
 
 .vera-page {
