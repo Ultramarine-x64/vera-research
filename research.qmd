@@ -3,22 +3,49 @@ title: "Research"
 toc: false
 ---
 
-## Adaptive Learning and Efficient Model Optimization
+```{=html}
+<div class="vera-page vera-research-page">
+  <section class="vera-section vera-section--page">
+    <div class="vera-container">
+      <div class="vera-pillars">
 
-Efficient adaptation and optimization when feedback is limited, noisy,
-delayed, or expensive to obtain.
+        <div class="vera-card">
+          <div class="vera-card-title">Distributed Optimization</div>
+          <p class="vera-card-desc">Stochastic, zeroth-order, and nonstationary optimization methods for distributed and networked systems.</p>
+          <div class="vera-kw">SPSA · tracking · uncertainty · learning</div>
+        </div>
 
-## Distributed Intelligence and Multi-Agent Systems
+        <div class="vera-card">
+          <div class="vera-card-title">Multi-Agent Systems</div>
+          <p class="vera-card-desc">Consensus, coordination, and graph-based interaction when no single agent observes the global objective.</p>
+          <div class="vera-kw">consensus · graphs · distributed learning</div>
+        </div>
 
-Distributed optimization, consensus, and graph-based coordination when
-no single agent observes the global objective.
+        <div class="vera-card">
+          <div class="vera-card-title">Networked Control</div>
+          <p class="vera-card-desc">Control of interconnected dynamical systems under communication constraints and asynchrony.</p>
+          <div class="vera-kw">stability · delays · logical time</div>
+        </div>
 
-## Networked Control and Multi-Robot Autonomy
+        <div class="vera-card">
+          <div class="vera-card-title">Robotic Teams</div>
+          <p class="vera-card-desc">Distributed decision-making and coordination for multi-robot systems operating in shared environments.</p>
+          <div class="vera-kw">formation · task allocation · autonomy</div>
+        </div>
 
-Coordination and control of cyber-physical systems and robotic teams under
-uncertainty and nonstationarity.
+        <div class="vera-card">
+          <div class="vera-card-title">Cyber-Physical Systems</div>
+          <p class="vera-card-desc">Learning and control at the interface of computation, communication, and physical dynamics.</p>
+          <div class="vera-kw">embedded · real-time · safety</div>
+        </div>
 
-### Cross-cutting themes
+      </div>
 
-communication constraints · noisy measurements · delayed feedback ·
-nonstationarity · graph-structured interaction
+      <p class="vera-section-intro vera-cross-cutting">
+        Cross-cutting themes: communication constraints · noisy measurements · delayed feedback ·
+        nonstationarity · graph-structured interaction
+      </p>
+    </div>
+  </section>
+</div>
+```

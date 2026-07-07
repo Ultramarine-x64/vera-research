@@ -1,0 +1,26 @@
+---
+title: "About me"
+toc: false
+---
+
+
+I am an optimization researcher working on distributed intelligence, multi-agent
+systems, and networked control. My research develops mathematically grounded methods
+for adaptive learning and coordination in cyber-physical and multi-robot systems—
+especially when feedback is limited, noisy, delayed, or expensive to obtain.
+
+**VERA** — *Victoria Erofeeva Research* — is my research umbrella for work on
+adaptive networked intelligence: stochastic and zeroth-order optimization,
+graph-based coordination, and control under uncertainty and asynchrony.
+
+### Research interests
+
+- Adaptive learning and efficient model optimization
+- Distributed intelligence and multi-agent systems
+- Networked control and multi-robot autonomy
+
+### Contact
+
+- Email: [victoria.erofeeva@gmail.com](mailto:victoria.erofeeva@gmail.com)
+- GitHub: [Ultramarine-x64](https://github.com/Ultramarine-x64)
+- LinkedIn: [victoria-erofeeva](https://www.linkedin.com/in/vicki-erofeeva/)

@@ -1,28 +1,45 @@
 ---
-title: "Victoria Erofeeva"
-page-layout: article
+pagetitle: "Victoria Erofeeva"
+page-layout: full
 toc: false
+title-block: false
+include-in-header:
+  - text: |
+      <script>document.body.classList.add('vera-home');</script>
 ---
 
-## VERA
-**V**ictoria **E**rofeeva · **R**esearch  
-*Adaptive Networked Intelligence*
+```{=html}
+<div class="vera-page">
 
-*Personal research website*
-
-**Optimization Researcher | Distributed Intelligence | Multi-Agent Systems | Networked Control**
-
-I develop mathematically grounded algorithms for adaptive learning,
-distributed optimization, multi-agent coordination, and networked control
-in cyber-physical and multi-robot systems.
-
-My work focuses on decision-making under uncertainty, nonstationarity,
-noisy and delayed feedback, and communication constraints.
-
-### Research areas
-
-- Adaptive Learning and Efficient Model Optimization
-- Distributed Intelligence and Multi-Agent Systems
-- Networked Control and Multi-Robot Autonomy
-
-[Research](research.qmd) · [Publications](publications.qmd) · [Blog](blog/index.qmd) · [CV](cv.qmd)
+  <!-- Hero -->
+  <section class="vera-hero">
+    <div class="vera-container">
+      <div class="vera-hero-grid">
+        <div class="vera-hero-text">
+          <div class="vera-hero-lab-spacer" aria-hidden="true"></div>
+          <h1 class="vera-hero-name">Victoria Erofeeva</h1>
+          <p class="vera-hero-role">Optimization researcher · distributed intelligence · multi-agent systems · networked control</p>
+          <p class="vera-hero-desc">
+            I develop mathematically grounded methods for adaptive learning, distributed optimization,
+            and coordination in cyber-physical and multi-robot systems—under uncertainty,
+            asynchrony, and limited feedback.
+          </p>
+          <p class="vera-hero-about">
+            <a href="about/index.qmd">Read more about me →</a>
+          </p>
+          <div class="vera-hero-contact">
+            <a href="mailto:victoria.erofeeva@gmail.com">Email</a>
+            <span>·</span>
+            <a href="https://github.com/Ultramarine-x64">GitHub</a>
+            <span>·</span>
+            <a href="https://www.linkedin.com/in/vicki-erofeeva/">LinkedIn</a>
+          </div>
+        </div>
+        <div class="vera-hero-visual">
+          <img src="assets/vera-geometry.svg" alt="Sparse directed graph with spectral curve overlay" width="340">
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+```

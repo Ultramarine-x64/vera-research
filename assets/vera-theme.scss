@@ -1,0 +1,655 @@
+/*-- scss:defaults --*/
+
+@import "palettes/editorial";
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap");
+
+$font-family-sans-serif: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+$headings-font-family:   "Source Serif 4", Georgia, "Times New Roman", serif;
+$font-family-monospace:  "IBM Plex Mono", ui-monospace, monospace;
+$headings-font-weight:   500;
+$headings-color:         $vera-text;
+
+$container-max-width: 1120px;
+$border-radius:         2px;
+$navbar-padding-y:      0.65rem;
+
+/*-- scss:rules --*/
+
+// ── Base ──────────────────────────────────────────────────────────
+
+body {
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  letter-spacing: -0.01em;
+}
+
+// ── Links ─────────────────────────────────────────────────────────
+
+main a:not(.vera-btn):not(.vera-card):not(.vera-pub-title) {
+  color: $vera-accent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: $vera-accent-hover;
+  }
+}
+
+// ── Navbar ────────────────────────────────────────────────────────
+
+.navbar {
+  background: rgba($navbar-bg, 0.92) !important;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid $vera-line-soft;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 992px) {
+  .navbar .navbar-container {
+    display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .navbar-brand-container.mx-auto {
+    order: 1;
+    margin: 0 !important;
+    flex: 0 0 auto;
+  }
+
+  #navbarCollapse.navbar-collapse {
+    order: 2;
+    flex: 1 1 0;
+    position: relative;
+    display: flex !important;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .navbar-nav.me-auto {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 !important;
+  }
+
+  .navbar-nav.ms-auto {
+    margin: 0 0.75rem 0 0 !important;
+  }
+
+  #quarto-search {
+    order: 3;
+    flex: 0 0 auto;
+  }
+
+  .navbar-toggler {
+    order: 4;
+  }
+}
+
+.navbar-title {
+  font-family: $headings-font-family;
+  font-size: 0.95rem !important;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $vera-text !important;
+}
+
+.navbar-nav .nav-link {
+  color: $vera-muted !important;
+  padding: 0.35rem 0.75rem !important;
+  border-bottom: 1px solid transparent;
+
+  &:hover,
+  &.active {
+    color: $vera-text !important;
+    border-bottom-color: $vera-line;
+  }
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: $vera-muted !important;
+}
+
+// ── Footer ────────────────────────────────────────────────────────
+
+.nav-footer {
+  position: relative;
+  background: $vera-bg-alt;
+  border-top: 1px solid $vera-line;
+  color: $vera-muted;
+  font-size: 0.85rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  overflow: hidden;
+}
+
+.nav-footer a {
+  color: $vera-secondary;
+
+  &:hover {
+    color: $vera-secondary-light;
+  }
+}
+
+.vera-home .nav-footer::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  opacity: 0.22;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' fill='none'%3E%3Cpath d='M 0 45 Q 200 20, 400 38 T 800 28 T 1200 42' stroke='%23D4D4D8' stroke-width='0.75' fill='none'/%3E%3Ccircle cx='400' cy='38' r='2' fill='%23A1A1AA'/%3E%3Ccircle cx='800' cy='28' r='2' fill='%23A1A1AA'/%3E%3C/svg%3E") center bottom / 100% auto no-repeat;
+}
+
+// ── Title block ───────────────────────────────────────────────────
+
+.quarto-title-block .title {
+  font-family: $headings-font-family;
+  font-weight: 500;
+}
+
+.vera-publications-page .quarto-title-block {
+  margin-bottom: 0;
+}
+
+// ── Code ──────────────────────────────────────────────────────────
+
+pre, code {
+  font-family: $font-family-monospace;
+  font-size: 0.88em;
+}
+
+p code:not(.sourceCode), li code:not(.sourceCode) {
+  color: $vera-text;
+  background: $vera-bg-alt;
+  border: 1px solid $vera-line;
+  padding: 0.1em 0.35em;
+  border-radius: 2px;
+}
+
+// ── Shared components ─────────────────────────────────────────────
+
+.vera-kw {
+  font-family: $font-family-monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: $vera-muted;
+  text-transform: uppercase;
+}
+
+.vera-section-title {
+  font-family: $headings-font-family;
+  font-size: 1.65rem;
+  font-weight: 500;
+  color: $vera-text;
+  margin-bottom: 0.5rem;
+}
+
+.vera-section-intro {
+  color: $vera-muted;
+  max-width: 42rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+.vera-card {
+  display: block;
+  padding: 1.5rem 1.75rem;
+  background: $vera-surface;
+  border: 1px solid $vera-line;
+  border-radius: 2px;
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: border-color 0.15s ease;
+
+  &:hover {
+    border-color: darken($vera-line, 8%);
+  }
+}
+
+.vera-card-title {
+  font-family: $headings-font-family;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: $vera-text;
+  margin-bottom: 0.6rem;
+}
+
+.vera-card-desc {
+  font-size: 0.92rem;
+  color: $vera-muted;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+// ── Homepage layout ───────────────────────────────────────────────
+
+body.vera-home .quarto-title-block {
+  display: none;
+}
+
+body.vera-home #quarto-content {
+  padding-top: 0;
+}
+
+body.vera-home main.content {
+  max-width: none;
+  padding: 0;
+}
+
+.vera-page {
+  width: 100%;
+}
+
+.vera-container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.vera-container--narrow {
+  max-width: 720px;
+}
+
+// Hero
+
+.vera-hero {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0 5rem;
+  border-bottom: 1px solid $vera-line-soft;
+}
+
+.vera-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.55fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.vera-hero-lab-spacer {
+  display: block;
+  height: calc(0.72rem * 1.2);
+  margin-bottom: 1.25rem;
+}
+
+.vera-hero-name {
+  font-family: $headings-font-family;
+  font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: $vera-text;
+  line-height: 1.15;
+  margin: 0 0 0.85rem;
+}
+
+.vera-hero-role {
+  font-size: 0.95rem;
+  color: $vera-muted;
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+  max-width: 34rem;
+}
+
+.vera-hero-desc {
+  font-size: 1.02rem;
+  color: $vera-text;
+  line-height: 1.7;
+  max-width: 36rem;
+  margin-bottom: 1.25rem;
+}
+
+.vera-hero-about {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+
+  a {
+    font-size: 0.92rem;
+    color: $vera-accent;
+    text-decoration: none;
+    border-bottom: 1px solid $vera-line;
+    padding-bottom: 0.1rem;
+    transition: color 0.15s ease, border-color 0.15s ease;
+
+    &:hover {
+      color: $vera-accent-hover;
+      border-bottom-color: $vera-accent;
+    }
+  }
+}
+
+.vera-hero-contact {
+  margin-top: 1.75rem;
+  font-family: $font-family-monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+
+  a {
+    color: $vera-accent;
+    text-decoration: none;
+
+    &:hover {
+      color: $vera-accent-hover;
+      text-decoration: underline;
+    }
+  }
+
+  span {
+    color: $vera-line;
+    margin: 0 0.5rem;
+  }
+}
+
+.vera-hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.9;
+
+  img, svg {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+  }
+}
+
+// Sections
+
+.vera-section {
+  padding: 6rem 0;
+
+  & + & {
+    border-top: 1px solid $vera-line-soft;
+  }
+}
+
+.vera-section-header {
+  margin-bottom: 2.5rem;
+}
+
+.vera-section--page {
+  padding: 2rem 0 4rem;
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.vera-cross-cutting {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+  font-size: 0.88rem;
+}
+
+.vera-pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+// Publications
+
+.vera-pub-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vera-pub {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 1.25rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid $vera-line-soft;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.vera-pub-year {
+  font-family: $font-family-monospace;
+  font-size: 0.85rem;
+  color: $vera-highlight;
+  font-weight: 500;
+  padding-top: 0.15rem;
+}
+
+.vera-pub-body {
+  font-size: 0.92rem;
+  color: $vera-muted;
+  line-height: 1.65;
+
+  em {
+    color: $vera-muted;
+  }
+
+  .csl-left-margin {
+    display: none;
+  }
+
+  .csl-right-inline {
+    display: block;
+  }
+}
+
+.vera-pub-title {
+  font-family: $headings-font-family;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: $vera-text;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.35rem;
+
+  &:hover {
+    color: $vera-accent;
+  }
+}
+
+.vera-pub-meta,
+.vera-pub-contrib {
+  font-size: 0.88rem;
+  color: $vera-muted;
+  margin-bottom: 0.4rem;
+}
+
+.vera-pub-contrib {
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.vera-pub-links {
+  font-family: $font-family-monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+
+  a {
+    color: $vera-accent;
+    text-decoration: none;
+    margin-right: 0.75rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  span {
+    color: $vera-line;
+    margin-right: 0.75rem;
+  }
+}
+
+// Projects
+
+.vera-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.vera-project {
+  padding: 1.75rem 2rem;
+  border: 1px solid $vera-line;
+  border-radius: 2px;
+  background: $vera-surface;
+}
+
+.vera-project-title {
+  font-family: $headings-font-family;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: $vera-text;
+  margin-bottom: 0.6rem;
+}
+
+.vera-project-question {
+  font-size: 0.92rem;
+  color: $vera-muted;
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.vera-project-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  font-size: 0.82rem;
+  margin: 0;
+
+  > div {
+    min-width: 12rem;
+  }
+
+  dt {
+    font-family: $font-family-monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $vera-secondary;
+    margin-bottom: 0.2rem;
+  }
+
+  dd {
+    color: $vera-muted;
+    margin: 0;
+  }
+}
+
+// Notes
+
+.vera-notes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vera-note {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid $vera-line-soft;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.vera-note-title {
+  font-family: $headings-font-family;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: $vera-text;
+  text-decoration: none;
+
+  &:hover {
+    color: $vera-accent;
+  }
+}
+
+.vera-note-abstract {
+  font-size: 0.9rem;
+  color: $vera-muted;
+  margin: 0.4rem 0 0.5rem;
+  line-height: 1.6;
+}
+
+.vera-note-meta {
+  font-family: $font-family-monospace;
+  font-size: 0.72rem;
+  color: $vera-muted;
+  letter-spacing: 0.03em;
+
+  .vera-tag {
+    color: $vera-secondary;
+  }
+}
+
+// Section links
+
+.vera-more {
+  margin-top: 2rem;
+  font-size: 0.85rem;
+
+  a {
+    font-family: $font-family-monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: $vera-accent;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ── Responsive ──────────────────────────────────────────────────
+
+@media (max-width: 900px) {
+  .vera-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .vera-hero-visual {
+    order: -1;
+    opacity: 0.55;
+    max-height: 180px;
+    overflow: hidden;
+  }
+
+  .vera-hero {
+    min-height: auto;
+    padding: 3rem 0 4rem;
+  }
+
+  .vera-section {
+    padding: 4rem 0;
+  }
+
+  .vera-pub {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}

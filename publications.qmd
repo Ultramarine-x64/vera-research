@@ -1,7 +1,16 @@
 ---
 title: "Publications"
+toc: false
 nocite: '@*'
 ---
 
+::: {.vera-page .vera-publications-page}
+::: {.vera-section .vera-section--page}
+::: {.vera-container}
+
 ::: {#refs}
+:::
+
+:::
+:::
 :::

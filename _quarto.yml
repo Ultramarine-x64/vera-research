@@ -1,9 +1,11 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - assets/
 
 website:
-  title: "Victoria Erofeeva"
+  title: "VERA"
   description: "VERA — Victoria Erofeeva Research on adaptive networked intelligence, distributed optimization, and multi-agent coordination."
   site-url: https://vera-research.dev
   page-navigation: true
@@ -13,20 +15,20 @@ website:
   draft-mode: unlinked
 
   navbar:
-    background: primary
-    foreground: white
+    background: "#FAFAFA"
+    foreground: "#09090B"
     left:
-      - text: Home
-        href: index.qmd
+      - text: About
+        href: about/index.qmd
       - text: Research
         href: research.qmd
-      - text: Blog
-        href: blog/index.qmd
       - text: Publications
         href: publications.qmd
-      - text: CV
-        href: cv.qmd
+      - text: Notes
+        href: blog/index.qmd
     right:
+      - text: CV
+        href: assets/cv.pdf
       - icon: github
         href: https://github.com/Ultramarine-x64
         aria-label: GitHub
@@ -34,21 +36,28 @@ website:
   page-footer:
     center: |
       **VERA** — Victoria Erofeeva Research · Adaptive Networked Intelligence  
+      [Email](mailto:victoria.erofeeva@gmail.com) · [GitHub](https://github.com/Ultramarine-x64) · [LinkedIn](https://www.linkedin.com/in/vicki-erofeeva/)  
       © 2026 Victoria Erofeeva
 
 format:
   html:
-    theme: cosmo
+    theme:
+      - cosmo
+      - assets/vera-theme.scss
     toc: true
     toc-depth: 3
     smooth-scroll: true
-    css: styles/custom.scss
+    link-external-newwindow: true
 
 bibliography: references.bib
 csl: https://www.zotero.org/styles/ieee
+
+citeproc: false
+
+filters:
+  - filters/vera-pubs.lua
 
 execute:
   freeze: auto
 
 lang: en
-

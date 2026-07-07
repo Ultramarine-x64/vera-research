@@ -1,0 +1,24 @@
+// VERA editorial palette
+
+$vera-bg:              #FAFAFA;
+$vera-surface:         #FFFFFF;
+$vera-bg-alt:          #F4F4F5;
+$vera-text:            #09090B;
+$vera-muted:           #52525B;
+$vera-accent:          #1E3A5F;
+$vera-accent-hover:    #152A45;
+$vera-secondary:       #0F766E;
+$vera-secondary-light: #0D9488;
+$vera-highlight:       #C2410C;
+$vera-line:            #D4D4D8;
+$vera-line-soft:       #E4E4E7;
+
+$body-bg:              $vera-bg;
+$body-color:           $vera-text;
+$primary:              $vera-text;
+$secondary:            $vera-secondary;
+$link-color:           $vera-accent;
+$link-hover-color:     $vera-accent-hover;
+
+$navbar-bg:            $vera-bg;
+$navbar-fg:            $vera-text;
