@@ -3,24 +3,71 @@ title: "About me"
 toc: false
 ---
 
+I am an optimization and multi-agent systems researcher working at the intersection of
+distributed intelligence, networked control, and adaptive learning.
 
-I am an optimization researcher working on distributed intelligence, multi-agent
-systems, and networked control. My research develops mathematically grounded methods
-for adaptive learning and coordination in cyber-physical and multi-robot systems—
-especially when feedback is limited, noisy, delayed, or expensive to obtain.
+My research develops mathematically grounded algorithms for distributed optimization,
+coordination, estimation, and decision-making in systems that operate under uncertainty,
+nonstationarity, communication constraints, noisy measurements, and limited feedback.
+This includes stochastic approximation, zeroth-order optimization, SPSA-type methods,
+graph-based coordination, and control algorithms for cyber-physical and multi-robot
+systems.
+
+I received my PhD in Mathematical Cybernetics from Saint Petersburg State University,
+where my dissertation focused on multi-agent observer control in sensor networks. Since
+then, my work has developed along three connected directions: optimization under
+uncertainty, distributed coordination in networked systems, and scalable control of
+multi-agent and robotic systems.
+
+I have served as Principal Investigator and research lead on funded projects related to
+zeroth-order optimization, distributed optimization, accelerated algorithms, and
+networked control. My current research agenda focuses on safe and communication-efficient
+zeroth-order optimization for control and learning in networked systems.
 
 **VERA** — *Victoria Erofeeva Research* — is my research umbrella for work on
-adaptive networked intelligence: stochastic and zeroth-order optimization,
-graph-based coordination, and control under uncertainty and asynchrony.
+**adaptive networked intelligence**: optimization, learning, and coordination methods
+for intelligent systems composed of many interacting agents.
 
-### Research interests
+My publications include work in control, optimization, networked systems, and
+multi-agent coordination, with papers in venues such as *IEEE Transactions on Automatic
+Control*, *Automatica*, *Information Sciences*, *Scientific Reports*, *IEEE Access*, and
+major systems-and-control conferences.
 
-- Adaptive learning and efficient model optimization
-- Distributed intelligence and multi-agent systems
-- Networked control and multi-robot autonomy
+I also supervise and mentor early-career researchers. My current PhD supervision focuses
+on meso-scale control of robot teams, including networked coordination algorithms and
+experimental validation on robotic testbeds. Previous mentorship has involved graduate
+and PhD students working on stochastic approximation, distributed optimization,
+multi-agent systems, and networked control.
 
-### Contact
+## Research focus
 
-- Email: [victoria.erofeeva@gmail.com](mailto:vicki.ultramarine@gmail.com)
+- **Adaptive learning and efficient optimization**  
+  Stochastic approximation, zeroth-order optimization, SPSA-type methods,
+  nonstationary optimization, and learning under limited, noisy, or delayed feedback.
+
+- **Distributed intelligence and multi-agent systems**  
+  Consensus algorithms, distributed optimization, graph-based coordination,
+  decentralized clustering, task allocation, and decision-making in large-scale
+  networked systems.
+
+- **Networked control and multi-robot autonomy**  
+  Meso-scale control, networked coordination, robotic teams, formation control,
+  cyber-physical systems, and experimental validation on robotic testbeds.
+
+## Current interests
+
+I am especially interested in how rigorous optimization and control methods can support
+adaptive distributed intelligence in systems where gradients are unavailable or expensive,
+communication is constrained, and decisions must be made online from imperfect feedback.
+
+This includes applications to robotic teams, networked AI systems, cyber-physical
+infrastructures, LLM-agent coordination, and efficient model adaptation.
+
+## Contact
+
+For research collaboration, invited talks, supervision, or academic and R&D opportunities,
+please contact me by email or through the links below.
+
+- Email: [vicki.ultramarine@gmail.com](mailto:vicki.ultramarine@gmail.com)
 - GitHub: [Ultramarine-x64](https://github.com/Ultramarine-x64)
 - LinkedIn: [victoria-erofeeva](https://www.linkedin.com/in/vicki-erofeeva/)

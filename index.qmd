@@ -18,14 +18,14 @@ format:
         <div class="vera-hero-text">
           <div class="vera-hero-lab-spacer" aria-hidden="true"></div>
           <h1 class="vera-hero-name">Victoria Erofeeva</h1>
-          <p class="vera-hero-role">Optimization researcher · distributed intelligence · multi-agent systems · networked control</p>
+          <p class="vera-hero-role">Optimization Researcher · Distributed Intelligence · Multi-Agent Systems · Networked Control</p>
           <p class="vera-hero-desc">
-            I develop mathematically grounded methods for adaptive learning, distributed optimization,
-            and coordination in cyber-physical and multi-robot systems—under uncertainty,
-            asynchrony, and limited feedback.
+            I develop optimization and coordination algorithms for adaptive networked intelligence —
+  from stochastic and zeroth-order methods to graph-based control of multi-agent and robotic systems
+  under uncertainty, asynchrony, and limited feedback.
           </p>
           <p class="vera-hero-about">
-            <a href="about/index.qmd">Read more about me →</a>
+            <a href="about/">About my research →</a>
           </p>
           <div class="vera-hero-contact">
             <a href="mailto:vicki.ultramarine@gmail.com">Email</a>
