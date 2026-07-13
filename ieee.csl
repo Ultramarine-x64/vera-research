@@ -344,7 +344,7 @@
       <choose>
         <!-- Specific Formats -->
         <if type="article-journal">
-          <group delimiter=", ">
+          <group delimiter=", " suffix=".">
             <text macro="title"/>
             <text variable="container-title" font-style="italic" form="short"/>
             <text macro="locators"/>
@@ -352,15 +352,6 @@
             <text macro="issued"/>
             <text macro="status"/>
           </group>
-          <choose>
-            <if variable="URL DOI" match="none">
-              <text value="."/>
-            </if>
-            <else>
-              <text value=","/>
-            </else>
-          </choose>
-          <text macro="access"/>
         </if>
         <else-if type="paper-conference speech" match="any">
           <group delimiter=", " suffix=", ">

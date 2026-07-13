@@ -1,0 +1,13 @@
+# Optional extras for publications (keyed by BibTeX citation key).
+# All fields are optional — omit any you don't need.
+#
+# quartile — e.g. Q1, Q2
+# doi      — override or add DOI link (otherwise taken from references.bib)
+# code     — repository URL
+# video    — talk / demo URL
+
+erofeeva2026accelerated:
+  quartile: Q1
+
+EROFEEVA2025112276:
+  quartile: Q1
