@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="650" viewBox="560 120 960 700" fill="none">
+  <defs>
+    <style>
+      .bg { fill:#FAFAFA; }
+      .soft { stroke:#D4D4D8; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round; opacity:.55; }
+      .softer { stroke:#E4E4E7; stroke-width:1; stroke-linecap:round; stroke-linejoin:round; opacity:.6; }
+      .main { stroke:#1E3A5F; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; opacity:.72; }
+      .teal { stroke:#0F766E; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; opacity:.72; }
+      .lightteal { stroke:#0D9488; stroke-width:1.35; stroke-linecap:round; stroke-linejoin:round; opacity:.6; }
+      .muted { stroke:#52525B; stroke-width:1.1; stroke-linecap:round; stroke-linejoin:round; opacity:.3; }
+      .ghost { stroke:#09090B; stroke-width:1; stroke-linecap:round; stroke-linejoin:round; opacity:.08; }
+      .dotblue { fill:#1E3A5F; }
+      .dotteal { fill:#0F766E; }
+      .dotlt { fill:#0D9488; }
+      .dotorange { fill:#C2410C; }
+      .dotghost { fill:#D4D4D8; }
+      .tiny { fill:#52525B; opacity:.18; }
+      .tinyb { fill:#1E3A5F; opacity:.28; }
+      .gridline { stroke:#E4E4E7; stroke-width:1; opacity:.8; }
+      .sig { stroke:#1E3A5F; stroke-width:1.2; opacity:.38; fill:none; }
+      .tick { stroke:#D4D4D8; stroke-width:1; opacity:.9; }
+      .faintfill { fill:#1E3A5F; opacity:.04; }
+    </style>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6.4" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8" fill="none" stroke="#1E3A5F" stroke-width="1.1" opacity="0.55"/>
+    </marker>
+    <marker id="arrowTeal" markerWidth="8" markerHeight="8" refX="6.4" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8" fill="none" stroke="#0F766E" stroke-width="1.1" opacity="0.55"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="900"/>
+
+  <!-- lots of negative space -->
+
+  <!-- faint ghost network behind -->
+  <g opacity="0.95">
+    <line class="ghost" x1="760" y1="260" x2="845" y2="190"/>
+    <line class="ghost" x1="845" y1="190" x2="930" y2="265"/>
+    <line class="ghost" x1="930" y1="265" x2="900" y2="370"/>
+    <line class="ghost" x1="760" y1="260" x2="810" y2="400"/>
+    <line class="ghost" x1="810" y1="400" x2="900" y2="370"/>
+    <line class="ghost" x1="810" y1="400" x2="760" y2="500"/>
+    <line class="ghost" x1="760" y1="500" x2="905" y2="560"/>
+    <line class="ghost" x1="905" y1="560" x2="1040" y2="470"/>
+    <line class="ghost" x1="900" y1="370" x2="1040" y2="470"/>
+    <line class="ghost" x1="930" y1="265" x2="1120" y2="255"/>
+    <line class="ghost" x1="1040" y1="470" x2="1185" y2="430"/>
+    <line class="ghost" x1="1185" y1="430" x2="1165" y2="555"/>
+    <line class="ghost" x1="1165" y1="555" x2="1040" y2="470"/>
+    <circle class="dotghost" cx="760" cy="260" r="6"/>
+    <circle class="dotghost" cx="845" cy="190" r="5.6"/>
+    <circle class="dotghost" cx="930" cy="265" r="5.8"/>
+    <circle class="dotghost" cx="900" cy="370" r="5.4"/>
+    <circle class="dotghost" cx="810" cy="400" r="6"/>
+    <circle class="dotghost" cx="760" cy="500" r="6.5"/>
+    <circle class="dotghost" cx="905" cy="560" r="6"/>
+    <circle class="dotghost" cx="1040" cy="470" r="6.2"/>
+    <circle class="dotghost" cx="1120" cy="255" r="5.7"/>
+    <circle class="dotghost" cx="1185" cy="430" r="6.2"/>
+    <circle class="dotghost" cx="1165" cy="555" r="5.9"/>
+  </g>
+
+  <!-- primary network motif -->
+  <g>
+    <!-- edges -->
+    <line class="main" x1="972" y1="285" x2="1040" y2="180" marker-end="url(#arrowBlue)"/>
+    <line class="main" x1="1040" y1="180" x2="1200" y2="220" marker-end="url(#arrowBlue)"/>
+    <line class="lightteal" x1="1200" y1="220" x2="1345" y2="395" marker-end="url(#arrowTeal)"/>
+    <line class="main" x1="972" y1="285" x2="1120" y2="305" marker-end="url(#arrowBlue)"/>
+    <line class="main" x1="1040" y1="180" x2="1120" y2="305"/>
+    <line class="main" x1="1120" y1="305" x2="1210" y2="430"/>
+    <line class="main" x1="1210" y1="430" x2="1190" y2="565"/>
+    <line class="main" x1="1190" y1="565" x2="1042" y2="595"/>
+    <line class="lightteal" x1="1042" y1="595" x2="945" y2="470"/>
+    <line class="lightteal" x1="945" y1="470" x2="972" y2="285"/>
+    <line class="main" x1="1210" y1="430" x2="1345" y2="395"/>
+    <line class="main" x1="1345" y1="395" x2="1328" y2="540"/>
+    <line class="lightteal" x1="1328" y1="540" x2="1190" y2="565" marker-end="url(#arrowTeal)"/>
+    <line class="main" x1="1120" y1="305" x2="1345" y2="395" opacity=".4"/>
+    <line class="lightteal" x1="945" y1="470" x2="1210" y2="430" marker-end="url(#arrowTeal)"/>
+    <line class="main" x1="860" y1="590" x2="945" y2="470"/>
+    <line class="main" x1="860" y1="590" x2="1042" y2="595" marker-end="url(#arrowBlue)"/>
+    <line class="main" x1="860" y1="590" x2="1042" y2="725"/>
+    <line class="lightteal" x1="1042" y1="725" x2="1190" y2="690"/>
+    <line class="main" x1="1190" y1="690" x2="1328" y2="540"/>
+    <line class="main" x1="1042" y1="725" x2="1190" y2="565"/>
+
+    <!-- nodes -->
+    <circle class="dotblue" cx="1040" cy="180" r="8.2"/>
+    <circle class="dotteal" cx="1200" cy="220" r="8.4"/>
+    <circle class="dotblue" cx="972" cy="285" r="8.1"/>
+    <circle class="dotteal" cx="1120" cy="305" r="8.4"/>
+    <circle class="dotlt" cx="945" cy="470" r="8.2"/>
+    <circle class="dotteal" cx="1210" cy="430" r="8.5"/>
+    <circle class="dotblue" cx="1190" cy="565" r="8.6"/>
+    <circle class="dotorange" cx="1345" cy="395" r="9.2"/>
+    <circle class="dotteal" cx="1328" cy="540" r="8.4"/>
+    <circle class="dotorange" cx="860" cy="590" r="8.8"/>
+    <circle class="dotteal" cx="1042" cy="725" r="8.6"/>
+    <circle class="dotblue" cx="1190" cy="690" r="8.7"/>
+  </g>
+
+  <!-- subtle adjacency / dot matrix accents -->
+  <g transform="translate(1325 145)">
+    <g>
+      <!-- 7x5 dot matrix -->
+      <circle class="tiny" cx="0" cy="0" r="3.1"/><circle class="tiny" cx="34" cy="0" r="3.1"/><circle class="tiny" cx="68" cy="0" r="3.1"/><circle class="tiny" cx="102" cy="0" r="3.1"/><circle class="tiny" cx="136" cy="0" r="3.1"/>
+      <circle class="tiny" cx="0" cy="34" r="3.1"/><circle class="tinyb" cx="34" cy="34" r="3.4"/><circle class="tiny" cx="68" cy="34" r="3.1"/><circle class="tinyb" cx="102" cy="34" r="3.4"/><circle class="tiny" cx="136" cy="34" r="3.1"/>
+      <circle class="tiny" cx="0" cy="68" r="3.1"/><circle class="tiny" cx="34" cy="68" r="3.1"/><circle class="tinyb" cx="68" cy="68" r="3.4"/><circle class="tiny" cx="102" cy="68" r="3.1"/><circle class="tiny" cx="136" cy="68" r="3.1"/>
+      <circle class="tiny" cx="0" cy="102" r="3.1"/><circle class="tinyb" cx="34" cy="102" r="3.4"/><circle class="tiny" cx="68" cy="102" r="3.1"/><circle class="tiny" cx="102" cy="102" r="3.1"/><circle class="tinyb" cx="136" cy="102" r="3.4"/>
+      <circle class="tiny" cx="0" cy="136" r="3.1"/><circle class="tiny" cx="34" cy="136" r="3.1"/><circle class="tiny" cx="68" cy="136" r="3.1"/><circle class="tinyb" cx="102" cy="136" r="3.4"/><circle class="tiny" cx="136" cy="136" r="3.1"/>
+    </g>
+  </g>
+
+  <!-- faint dot matrix lower-left -->
+  <g transform="translate(600 750)">
+    <circle class="tiny" cx="0" cy="0" r="3"/><circle class="tiny" cx="20" cy="0" r="3"/><circle class="tiny" cx="40" cy="0" r="3"/><circle class="tiny" cx="60" cy="0" r="3"/><circle class="tiny" cx="80" cy="0" r="3"/><circle class="tiny" cx="100" cy="0" r="3"/>
+    <circle class="tiny" cx="0" cy="20" r="3"/><circle class="tiny" cx="20" cy="20" r="3"/><circle class="tiny" cx="40" cy="20" r="3"/><circle class="tiny" cx="60" cy="20" r="3"/><circle class="tiny" cx="80" cy="20" r="3"/><circle class="tiny" cx="100" cy="20" r="3"/>
+    <circle class="tiny" cx="0" cy="40" r="3"/><circle class="tiny" cx="20" cy="40" r="3"/><circle class="tiny" cx="40" cy="40" r="3"/><circle class="tiny" cx="60" cy="40" r="3"/><circle class="tiny" cx="80" cy="40" r="3"/><circle class="tiny" cx="100" cy="40" r="3"/>
+  </g>
+
+  <!-- small spectral / signal curve accent -->
+  <g transform="translate(1235 780)">
+    <line class="tick" x1="0" y1="-28" x2="0" y2="38"/>
+    <line class="tick" x1="42" y1="-40" x2="42" y2="32"/>
+    <line class="tick" x1="84" y1="-26" x2="84" y2="34"/>
+    <line class="tick" x1="126" y1="-48" x2="126" y2="30"/>
+    <line class="tick" x1="168" y1="-22" x2="168" y2="38"/>
+    <line class="tick" x1="210" y1="-14" x2="210" y2="26"/>
+    <line class="tick" x1="252" y1="-34" x2="252" y2="36"/>
+    <path class="sig" d="M-10,18 C10,20 26,5 42,-18 C60,-46 85,-42 104,-8 C124,24 144,34 168,22 C188,12 205,-4 226,6 C245,16 256,18 278,20"/>
+    <circle class="tinyb" cx="42" cy="-18" r="2.4"/>
+    <circle class="tinyb" cx="126" cy="-8" r="2.4"/>
+    <circle class="tinyb" cx="168" cy="22" r="2.4"/>
+    <circle class="tinyb" cx="252" cy="6" r="2.4"/>
+  </g>
+
+</svg>

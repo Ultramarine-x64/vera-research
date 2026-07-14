@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="64" viewBox="0 0 280 64" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">VERA navbar logo</title>
+  <desc id="desc">Minimal navbar logo for VERA using a sparse matrix inspired mark.</desc>
+  <defs>
+    <style>
+
+      .ink { fill: #09090B; }
+      .soft { fill: #E4E4E7; }
+      .outline { stroke: #D4D4D8; fill: none; }
+      .blue { fill: #1E3A5F; }
+      .teal { fill: #0F766E; }
+      .orange { fill: #C2410C; }
+
+      .outline { stroke-width: 1.25; }
+      .word {
+        font-family: Inter, "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+        font-size: 34px;
+        font-weight: 650;
+        letter-spacing: 3px;
+      }
+    </style>
+  </defs>
+
+  <g transform="translate(16 10)">
+    <rect class="outline" x="0" y="0" width="44" height="44" rx="9"/>
+    <g transform="translate(7.75 7.75)">
+      <rect class="blue" x="0" y="0" width="4.5" height="4.5" rx="0.99"/>
+      <rect class="soft" x="8" y="0" width="4.5" height="4.5" rx="0.99"/>
+      <rect class="teal" x="16" y="0" width="4.5" height="4.5" rx="0.99"/>
+      <rect class="soft" x="24" y="0" width="4.5" height="4.5" rx="0.99"/>
+      <rect class="soft" x="0" y="8" width="4.5" height="4.5" rx="0.99"/>
+      <rect class="blue" x="8" y="8" width="4.5" height="4.5" rx="0.99"/>
+      <rect class="soft" x="16" y="8" width="4.5" height="4.5" rx="0.99"/>
+      <rect class="orange" x="24" y="8" width="4.5" height="4.5" rx="0.99"/>
+      <rect class="teal" x="0" y="16" width="4.5" height="4.5" rx="0.99"/>
+      <rect class="soft" x="8" y="16" width="4.5" height="4.5" rx="0.99"/>
+      <rect class="blue" x="16" y="16" width="4.5" height="4.5" rx="0.99"/>
+      <rect class="soft" x="24" y="16" width="4.5" height="4.5" rx="0.99"/>
+      <rect class="soft" x="0" y="24" width="4.5" height="4.5" rx="0.99"/>
+      <rect class="soft" x="8" y="24" width="4.5" height="4.5" rx="0.99"/>
+      <rect class="soft" x="16" y="24" width="4.5" height="4.5" rx="0.99"/>
+      <rect class="blue" x="24" y="24" width="4.5" height="4.5" rx="0.99"/>
+    </g>
+  </g>
+
+  <text class="ink word" x="82" y="43">VERA</text>
+</svg>
