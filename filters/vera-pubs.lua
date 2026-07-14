@@ -1,4 +1,4 @@
--- Citeproc + VERA bibliography card styling + optional publication extras.
+-- Citeproc + ScalAR-inspired publication cards + optional extras.
 
 local META_PATH = "publications-meta.yml"
 
@@ -16,46 +16,18 @@ local function is_entry(block)
     or (block.identifier and block.identifier:match("^ref%-"))
 end
 
-local function inlines_to_text(inlines)
-  return pandoc.utils.stringify(inlines)
-end
-
-local function extract_year(text)
-  return text:match("(%d%d%d%d)%.?%s*$") or text:match("(%d%d%d%d)")
-end
-
-local function ref_year(ref)
-  if not ref or not ref.issued then
-    return nil
-  end
-
-  local issued = ref.issued
-  if type(issued) == "string" or type(issued) == "number" then
-    return tostring(issued)
-  end
-
-  if type(issued) == "table" then
-    local date_parts = issued["date-parts"]
-    if type(date_parts) == "table" and date_parts[1] then
-      local part = date_parts[1]
-      if type(part) == "table" and part[1] then
-        return tostring(part[1])
-      end
-      if type(part) == "number" or type(part) == "string" then
-        return tostring(part)
-      end
-    end
-  end
-
-  return nil
-end
-
 local function meta_string(value)
   if value == nil then
     return nil
   end
   if type(value) == "string" then
+    if value == "" then
+      return nil
+    end
     return value
+  end
+  if type(value) == "number" then
+    return tostring(value)
   end
   local text = pandoc.utils.stringify(value)
   if text == "" then
@@ -65,11 +37,6 @@ local function meta_string(value)
 end
 
 local function resolve_meta_path()
-  -- Quarto may run Pandoc with a different working directory.
-  -- We therefore try a few candidate paths:
-  -- 1) META_PATH as-is
-  -- 2) META_PATH relative to Quarto working directory
-  -- 3) META_PATH relative to the repository root (computed from this filter location)
   local function parent_dir(d)
     return d and d:match("(.+)/[^/]+$") or nil
   end
@@ -98,13 +65,12 @@ local function resolve_meta_path()
     table.insert(candidates, join(wd, META_PATH))
   end
 
-  -- Compute repo root from this filter file path.
   local info = debug and debug.getinfo and debug.getinfo(1, "S") or nil
-  local src = info and info.source or nil -- e.g. "@.../filters/vera-pubs.lua"
+  local src = info and info.source or nil
   if type(src) == "string" and src:sub(1, 1) == "@" then
     local filter_path = src:sub(2)
-    local filter_dir = dir_of(filter_path) -- .../filters
-    local repo_root = parent_dir(filter_dir) -- .../
+    local filter_dir = dir_of(filter_path)
+    local repo_root = parent_dir(filter_dir)
     if repo_root then
       table.insert(candidates, join(repo_root, META_PATH))
     end
@@ -155,7 +121,6 @@ local function load_publications_meta()
   end
   local contents = file:read("*a")
   file:close()
-
   return parse_publications_meta(contents)
 end
 
@@ -171,6 +136,126 @@ local function build_ref_index(doc)
     end
   end
   return index
+end
+
+local function ref_year(ref)
+  if not ref or not ref.issued then
+    return nil
+  end
+
+  local issued = ref.issued
+  if type(issued) == "string" or type(issued) == "number" then
+    return tostring(issued)
+  end
+
+  if type(issued) == "table" then
+    local date_parts = issued["date-parts"]
+    if type(date_parts) == "table" and date_parts[1] then
+      local part = date_parts[1]
+      if type(part) == "table" and part[1] then
+        return tostring(part[1])
+      end
+      if type(part) == "number" or type(part) == "string" then
+        return tostring(part)
+      end
+    end
+  end
+
+  return nil
+end
+
+local function initial_from_given(given)
+  if not given or given == "" then
+    return nil
+  end
+  local parts = {}
+  for token in given:gmatch("%S+") do
+    local ch = token:match("[%z\1-\127\194-\244][\128-\191]*")
+    if ch then
+      table.insert(parts, ch:upper() .. ".")
+    end
+  end
+  if #parts == 0 then
+    return nil
+  end
+  return table.concat(parts, " ")
+end
+
+local function format_author_name(author)
+  local family = meta_string(author.family) or ""
+  local given = meta_string(author.given)
+  local initials = initial_from_given(given)
+  if initials and family ~= "" then
+    return initials .. " " .. family
+  end
+  if family ~= "" then
+    return family
+  end
+  return pandoc.utils.stringify(author)
+end
+
+local function format_authors(ref)
+  if not ref or not ref.author then
+    return nil
+  end
+
+  local names = {}
+  for _, author in ipairs(ref.author) do
+    table.insert(names, format_author_name(author))
+  end
+
+  if #names == 0 then
+    return nil
+  end
+  if #names == 1 then
+    return names[1]
+  end
+  if #names == 2 then
+    return names[1] .. " and " .. names[2]
+  end
+
+  local head = table.concat(names, ", ", 1, #names - 1)
+  return head .. ", and " .. names[#names]
+end
+
+local function format_venue(ref, year)
+  if not ref then
+    return nil
+  end
+
+  local parts = {}
+  local journal = meta_string(ref["container-title"])
+  if journal then
+    table.insert(parts, journal)
+  end
+
+  local volume = meta_string(ref.volume)
+  if volume then
+    table.insert(parts, "vol. " .. volume)
+  end
+
+  local issue = meta_string(ref.issue)
+  if issue then
+    table.insert(parts, "no. " .. issue)
+  end
+
+  local page = meta_string(ref.page)
+  if page then
+    if page:match("^%d+$") then
+      table.insert(parts, "p. " .. page)
+    else
+      table.insert(parts, "pp. " .. page)
+    end
+  end
+
+  if year then
+    table.insert(parts, year)
+  end
+
+  if #parts == 0 then
+    return nil
+  end
+  return table.concat(parts, ", ")
 end
 
 local function doi_url(doi)
@@ -229,19 +314,7 @@ local function build_links_inlines(extras)
   return inlines
 end
 
-local function entry_inlines(entry)
-  for _, block in ipairs(entry.content) do
-    if block.t == "Div" and has_class(block, "csl-right-inline") then
-      return block.content
-    end
-    if block.t == "Para" then
-      return block.content
-    end
-  end
-  return {}
-end
-
-local function build_footer_blocks(extras)
+local function build_footer(extras)
   local footer_blocks = {}
   local link_inlines = build_links_inlines(extras)
 
@@ -269,94 +342,53 @@ local function build_footer_blocks(extras)
     )
   end
 
-  return {
-    pandoc.Div(footer_blocks, pandoc.Attr("", { "vera-pub-footer" }, {})),
-  }
+  return pandoc.Div(footer_blocks, pandoc.Attr("", { "vera-pub-footer" }, {}))
 end
 
-local function strip_doi_links(inlines)
-  local out = {}
-  for _, el in ipairs(inlines) do
-    if el.t == "Link" and el.target and el.target:match("doi%.org") then
-      for _, child in ipairs(el.content) do
-        table.insert(out, child)
-      end
-    elseif el.t == "Span" or el.t == "Strong" or el.t == "Emph" then
-      el.content = strip_doi_links(el.content)
-      table.insert(out, el)
-    else
-      table.insert(out, el)
-    end
-  end
-  return out
-end
-
-local function strip_doi_from_block(block)
-  if block.t == "Div" then
-    block.content = strip_doi_from_blocks(block.content)
-    return block
-  end
-  if block.t == "Para" then
-    block.content = strip_doi_links(block.content)
-    return block
-  end
-  return block
-end
-
-local function strip_doi_from_blocks(blocks)
-  local out = {}
-  for _, block in ipairs(blocks) do
-    table.insert(out, strip_doi_from_block(block))
-  end
-  return out
-end
-
-local function citation_blocks(entry)
-  local blocks = {}
-  for _, block in ipairs(entry.content) do
-    if block.t == "Div" and has_class(block, "csl-right-inline") then
-      table.insert(blocks, strip_doi_from_block(block))
-    elseif block.t == "Para" and #block.content > 0 then
-      table.insert(blocks, strip_doi_from_block(block))
-    end
-  end
-  return blocks
+local function plain_div(text, class_name)
+  return pandoc.Div(
+    { pandoc.Plain({ pandoc.Str(text) }) },
+    pandoc.Attr("", { class_name }, {})
+  )
 end
 
 local function transform_entry(entry, ref_index, meta)
-  local inlines = entry_inlines(entry)
-  if #inlines == 0 then
+  local key = cite_key(entry.identifier)
+  local ref = ref_index[key]
+  if not ref then
     return entry
   end
 
-  local key = cite_key(entry.identifier)
-  local ref = ref_index[key]
-  local year = ref_year(ref) or extract_year(inlines_to_text(inlines)) or ""
+  local year = ref_year(ref) or ""
+  local title = meta_string(ref.title)
+  local authors = format_authors(ref)
+  local venue = format_venue(ref, year)
   local extras = entry_extras(key, ref, meta)
 
-  local citation = pandoc.Div(
-    citation_blocks(entry),
-    pandoc.Attr("", { "vera-pub-citation" }, {})
-  )
+  local content_blocks = {}
+  if title then
+    table.insert(content_blocks, plain_div(title, "vera-pub-title"))
+  end
+  if authors then
+    table.insert(content_blocks, plain_div(authors, "vera-pub-authors"))
+  end
+  if venue then
+    table.insert(content_blocks, plain_div(venue, "vera-pub-venue"))
+  end
 
   local pub_blocks = {
     pandoc.Div(
       {
-        pandoc.Div(
-          { pandoc.Plain({ pandoc.Str(year) }) },
-          pandoc.Attr("", { "vera-pub-year" }, {})
-        ),
-        citation,
+        plain_div(year, "vera-pub-year"),
+        pandoc.Div(content_blocks, pandoc.Attr("", { "vera-pub-content" }, {})),
       },
       pandoc.Attr("", { "vera-pub-main" }, {})
     ),
   }
 
-  local footer_blocks = build_footer_blocks(extras)
-  if footer_blocks then
-    for _, block in ipairs(footer_blocks) do
-      table.insert(pub_blocks, block)
-    end
+  local footer = build_footer(extras)
+  if footer then
+    table.insert(pub_blocks, footer)
   end
 
   return pandoc.Div(pub_blocks, pandoc.Attr(entry.identifier, { "vera-pub" }, {}))
