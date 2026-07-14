@@ -1,6 +1,7 @@
--- Citeproc + ScalAR-inspired publication cards + optional extras.
+-- Citeproc + ScalAR-inspired publication cards + category sections.
 
 local META_PATH = "publications-meta.yml"
+local FIELD_PATTERN = "[%w_%-]+"
 
 local function has_class(el, name)
   for _, class in ipairs(el.classes) do
@@ -14,6 +15,7 @@ end
 local function is_entry(block)
   return has_class(block, "csl-entry")
     or (block.identifier and block.identifier:match("^ref%-"))
+    or has_class(block, "vera-pub")
 end
 
 local function meta_string(value)
@@ -91,23 +93,65 @@ local function trim(value)
   return (value:gsub("^%s+", ""):gsub("%s+$", ""))
 end
 
-local function parse_publications_meta(contents)
-  local result = {}
-  local current_key = nil
+local function unquote(value)
+  value = trim(value)
+  local quoted = value:match([[^"(.*)"$]]) or value:match([[^'(.*)'$]])
+  return quoted or value
+end
 
-  for line in contents:gmatch("[^\r\n]+") do
-    if not line:match("^%s*#") then
-      local top_key = line:match("^([%w%-]+):%s*$")
-      if top_key then
-        current_key = top_key
-        result[current_key] = {}
+local function parse_publications_meta(contents)
+  local result = {
+    entries = {},
+    category_order = {},
+    category_labels = {},
+    default_category = nil,
+  }
+
+  local current_key = nil
+  local current_mode = nil -- "entry" | "order" | "labels"
+
+  for raw_line in contents:gmatch("[^\r\n]+") do
+    local line = raw_line
+    if not line:match("^%s*#") and trim(line) ~= "" then
+      if line:match("^_category%-order:%s*$") then
+        current_key = nil
+        current_mode = "order"
+      elseif line:match("^_category%-labels:%s*$") then
+        current_key = nil
+        current_mode = "labels"
       else
-        local field, value = line:match("^%s+([%w%-]+):%s*(.-)%s*$")
-        if current_key and field and value ~= "" then
-          result[current_key][field] = trim(value)
+        local default_cat = line:match("^_default%-category:%s*(.+)%s*$")
+        if default_cat then
+          result.default_category = unquote(default_cat)
+        else
+          local top_key = line:match("^(" .. FIELD_PATTERN .. "):%s*$")
+          if top_key and not top_key:match("^_") then
+            current_key = top_key
+            current_mode = "entry"
+            result.entries[current_key] = {}
+          elseif current_mode == "order" then
+            local item = line:match("^%s*%-%s*(.+)%s*$")
+            if item then
+              table.insert(result.category_order, unquote(item))
+            end
+          elseif current_mode == "labels" then
+            local field, value = line:match("^%s+(" .. FIELD_PATTERN .. "):%s*(.-)%s*$")
+            if field and value ~= "" then
+              result.category_labels[field] = unquote(value)
+            end
+          elseif current_mode == "entry" and current_key then
+            local field, value = line:match("^%s+(" .. FIELD_PATTERN .. "):%s*(.-)%s*$")
+            if field and value ~= "" then
+              result.entries[current_key][field] = unquote(value)
+            end
+          end
         end
       end
     end
+  end
+
+  if not result.default_category and #result.category_order > 0 then
+    result.default_category = result.category_order[#result.category_order]
   end
 
   return result
@@ -117,11 +161,39 @@ local function load_publications_meta()
   local path = resolve_meta_path()
   local file = io.open(path, "r")
   if not file then
-    return {}
+    return {
+      entries = {},
+      category_order = { "highlighted", "additional" },
+      category_labels = {
+        highlighted = "Selected publications",
+        additional = "Additional publications",
+      },
+      default_category = "additional",
+    }
   end
   local contents = file:read("*a")
   file:close()
   return parse_publications_meta(contents)
+end
+
+local function entry_for_key(meta, key)
+  if not key then
+    return nil
+  end
+  if meta.entries[key] then
+    return meta.entries[key]
+  end
+  local lower = key:lower()
+  for entry_key, entry in pairs(meta.entries) do
+    if entry_key:lower() == lower then
+      return entry
+    end
+  end
+  return nil
+end
+
+local function default_category(meta)
+  return meta.default_category or "uncategorized"
 end
 
 local function cite_key(entry_id)
@@ -269,8 +341,9 @@ local function doi_url(doi)
 end
 
 local function entry_extras(key, ref, meta)
-  local entry = meta[key]
+  local entry = entry_for_key(meta, key)
   local extras = {
+    category = (entry and entry.category) or default_category(meta),
     quartile = entry and entry.quartile or nil,
     code = entry and entry.code or nil,
     video = entry and entry.video or nil,
@@ -352,6 +425,11 @@ local function plain_div(text, class_name)
   )
 end
 
+local function category_label(meta, category)
+  return meta.category_labels[category]
+    or category:gsub("_", " "):gsub("^%l", string.upper)
+end
+
 local function transform_entry(entry, ref_index, meta)
   local key = cite_key(entry.identifier)
   local ref = ref_index[key]
@@ -391,7 +469,70 @@ local function transform_entry(entry, ref_index, meta)
     table.insert(pub_blocks, footer)
   end
 
-  return pandoc.Div(pub_blocks, pandoc.Attr(entry.identifier, { "vera-pub" }, {}))
+  return pandoc.Div(
+    pub_blocks,
+    pandoc.Attr(entry.identifier, { "vera-pub" }, { ["data-category"] = extras.category })
+  )
+end
+
+local function category_rank(meta, category)
+  for i, key in ipairs(meta.category_order) do
+    if key == category then
+      return i
+    end
+  end
+  return (#meta.category_order) + 1
+end
+
+local function regroup_by_category(entries, meta)
+  if #entries == 0 then
+    return entries
+  end
+
+  local buckets = {}
+  local seen_order = {}
+
+  for _, entry in ipairs(entries) do
+    local category = (entry.attributes and entry.attributes["data-category"])
+      or default_category(meta)
+    if not buckets[category] then
+      buckets[category] = {}
+      table.insert(seen_order, category)
+    end
+    table.insert(buckets[category], entry)
+  end
+
+  table.sort(seen_order, function(a, b)
+    local ra = category_rank(meta, a)
+    local rb = category_rank(meta, b)
+    if ra == rb then
+      return a < b
+    end
+    return ra < rb
+  end)
+
+  -- Single category: keep flat list, no section header needed.
+  if #seen_order == 1 then
+    return buckets[seen_order[1]]
+  end
+
+  local out = {}
+  for _, category in ipairs(seen_order) do
+    local section_blocks = {
+      pandoc.Header(2, { pandoc.Str(category_label(meta, category)) }),
+    }
+    for _, entry in ipairs(buckets[category]) do
+      table.insert(section_blocks, entry)
+    end
+    table.insert(
+      out,
+      pandoc.Div(
+        section_blocks,
+        pandoc.Attr("", { "vera-pub-section" }, { ["data-category"] = category })
+      )
+    )
+  end
+  return out
 end
 
 local function walk_blocks(blocks, ref_index, meta)
@@ -400,9 +541,15 @@ local function walk_blocks(blocks, ref_index, meta)
     if block.t == "Div" then
       if block.identifier == "refs" or has_class(block, "references") then
         block.classes:insert("vera-pub-list")
-        block.content = walk_blocks(block.content, ref_index, meta)
-      elseif is_entry(block) then
-        block = transform_entry(block, ref_index, meta)
+        local transformed = {}
+        for _, child in ipairs(block.content) do
+          if child.t == "Div" and is_entry(child) then
+            table.insert(transformed, transform_entry(child, ref_index, meta))
+          else
+            table.insert(transformed, child)
+          end
+        end
+        block.content = regroup_by_category(transformed, meta)
       else
         block.content = walk_blocks(block.content, ref_index, meta)
       end

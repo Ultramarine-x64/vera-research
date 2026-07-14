@@ -480,6 +480,24 @@ body.vera-home .nav-footer {
   margin: 0;
 }
 
+.vera-pub-section {
+  margin: 0 0 2.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  > h2 {
+    font-family: $headings-font-family;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: $vera-text;
+    margin: 0 0 1rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid $vera-line-soft;
+  }
+}
+
 .vera-pub {
   display: flex;
   flex-direction: column;
@@ -487,7 +505,7 @@ body.vera-home .nav-footer {
   padding: 1.5rem 0;
   border-bottom: 1px solid $vera-line-soft;
 
-  &:first-child {
+  &:first-of-type {
     padding-top: 0;
   }
 

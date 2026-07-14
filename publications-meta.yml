@@ -1,13 +1,94 @@
 # Optional extras for publications (keyed by BibTeX citation key).
 # All fields are optional — omit any you don't need.
 #
+# category — section key from _category-order below
 # quartile — e.g. Q1, Q2
 # doi      — override or add DOI link (otherwise taken from references.bib)
 # code     — repository URL
 # video    — talk / demo URL
 
+_category-order:
+  - highlighted
+  - additional_journals
+  - additional_conferences
+  - preprints
+
+_category-labels:
+  highlighted: Featured publications
+  additional_journals: Selected Journal Papers
+  additional_conferences: Selected Conference Papers
+  preprints: Preprints
+
 erofeeva2026accelerated:
+  category: highlighted
   quartile: Q1
 
 EROFEEVA2025112276:
+  category: highlighted
   quartile: Q1
+
+erofeeva2025shapley:
+  category: highlighted
+  quartile: Q1
+
+erofeeva2025zeroorder:
+  category: highlighted
+  quartile: Q1
+
+tarasova2025decentralized:
+  category: highlighted
+  quartile: Q1
+
+chernov2025accelerated:
+  category: highlighted
+
+amelin2026randomized:
+  category: additional_journals
+  quartile: Q1
+
+erofeeva2025clustering:
+  category: additional_journals
+  quartile: Q1
+
+erofeeva2024loadbalancing:
+  category: additional_journals
+  quartile: Q1
+
+erofeeva2024multilevel:
+  category: additional_journals
+  quartile: Q1
+
+pugach2024crossover:
+  category: additional_journals
+  quartile: Q1
+
+granichin2021spsaconsensus:
+  category: additional_journals
+  quartile: Q1
+
+chernov2025iotpositioning:
+  category: additional_conferences
+
+erofeeva2025adaptiveclustering:
+  category: additional_conferences
+
+borisoglebskaya2023loadbalancing:
+  category: additional_conferences
+
+erofeeva2023improvedspsa:
+  category: additional_conferences
+
+erofeeva2023datareconciliation:
+  category: additional_conferences
+
+erofeeva2023clusterflow:
+  category: additional_conferences
+
+erofeeva2022parameterestimation:
+  category: additional_conferences
+
+erofeeva2022acceleratedspsa:
+  category: additional_conferences
+
+erofeeva2021weightedspsa:
+  category: additional_conferences
